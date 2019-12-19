@@ -1,0 +1,43 @@
+easy_admin:
+  site_name: 'Symfony 4  <em style="font-size: 80%;">With JWT</em>'
+  design:
+    menu:
+      # no permission defined, so all users can see this menu item
+      - { entity: 'BlogPost' }
+      - { entity: 'Image' }
+
+      # only users with the ROLE_SUPER_ADMIN role will see this menu item
+      - { entity: 'User', permission: 'ROLE_SUPER_ADMIN' }
+
+      # when defining multiple roles, the user must have at least one of them
+      # or all of them, depending on the configuration of your Symfony application
+      # by default: user must have at least one of the roles
+      # see https://symfony.com/doc/current/security/access_control.html#access-enforcement
+      - { entity: 'Comment', permission: ['ROLE_USER', 'ROLE_ADMIN'] }
+  entities:
+        BlogPost:
+            class: App\Entity\BlogPost
+            list:
+              actions: [ { name: 'Show' } ]
+            show:
+              fields:
+                - id
+                - title
+                - published
+                - comments
+                - images
+        Comment:
+            class: App\Entity\Comment
+        Image:
+            class: App\Entity\Image
+            list:
+                fields:
+                  - { property: 'url' , type: 'image', label: 'Image'}
+                  - id
+            form:
+                fields:
+                  - { property: 'file', type: 'Vich\UploaderBundle\Form\Type\VichFileType' }
+        User:
+              class: App\Entity\User
+              controller: App\Controller\UserAdminController
+
