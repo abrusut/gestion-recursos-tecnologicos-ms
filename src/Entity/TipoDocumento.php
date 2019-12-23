@@ -46,7 +46,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  *      },
  *      itemOperations={
  *              "get"={
- *                      "access_control"="is_granted('ROLE_ADMIN')",
+ *                      "access_control"="is_granted('IS_AUTHENTICATED_FULLY')",
  *                       "normalization_context"={
  *                            "groups" = { "get" }
  *                      }
@@ -64,14 +64,14 @@ use Symfony\Component\Validator\Constraints as Assert;
  *      collectionOperations={
  *
  *              "get-global-search"={
- *                      "access_control"="is_granted('ROLE_ADMIN')",
+ *                      "access_control"="is_granted('IS_AUTHENTICATED_FULLY')",
  *                      "method"="GET",
  *                      "path"="/tipo-documentos/globalFilter",
  *                      "controller"=TipoDocumentoGlobalFilterAction::class,
  *                      "defaults"={"_api_receive"=false}
  *               },
  *              "get"={
- *                      "access_control"="is_granted('ROLE_ADMIN')",
+ *                      "access_control"="is_granted('IS_AUTHENTICATED_FULLY')",
  *                       "normalization_context"={
  *                            "groups" = { "get" }
  *                      }

@@ -11,6 +11,7 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RangeFilter;
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Controller\AgenteGlobalFilterAction;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 use Symfony\Component\Validator\Constraints as Assert;
@@ -101,6 +102,7 @@ use Symfony\Component\Validator\Constraints as Assert;
  * Agente
  * @ORM\Entity(repositoryClass="App\Repository\AgenteRepository")
  * @ORM\Table(name="agente")
+ * @UniqueEntity(fields={"numeroDocumento"})
  * @ORM\HasLifecycleCallbacks()
  */
 class Agente
@@ -165,9 +167,9 @@ class Agente
     private $domicilioNumero;
     
     /**
-     * @var App\Entity\TipoDocumento
+     * @var TipoDocumento
      * @Groups({"get", "post","put"})
-     * @ORM\ManyToOne(targetEntity="App\Entity\TipoDocumento")
+     * @ORM\ManyToOne(targetEntity="TipoDocumento")
      */
     private $tipoDocumento;
     
@@ -175,7 +177,7 @@ class Agente
     /**
      * @var integer
      * @Groups({"get", "post","put"})
-     * @ORM\Column(name="numero_documento", type="string", length=8)
+     * @ORM\Column(name="numero_documento", type="integer", length=8)
      * @Assert\NotBlank()
      * @Assert\Length(min = 8)
      * @Assert\Length( max = 8)
@@ -187,15 +189,14 @@ class Agente
      * @var String
      * @Groups({"get", "post","put"})
      * @ORM\Column(name="sexo", type="string", length=1, nullable=true)
-     * @Assert\Choice(choices={"m", "f"}, message="Seleccione un Sexo Valido")
-     *
      */
     private $sexo;
     
     /**
      * @var integer
      * @Groups({"get", "post","put"})
-     * @ORM\Column(name="telefono", type="string", length=15, nullable=true)
+     * @ORM\Column(name="telefono", type="string", length=25, nullable=true)
+     * @Assert\Length( max = 25)
      */
     private $telefono;
     
@@ -349,17 +350,17 @@ class Agente
     }
     
     /**
-     * @return App\Entity\TipoDocumento
+     * @return TipoDocumento
      */
-    public function getTipoDocumento(): App\Entity\TipoDocumento
+    public function getTipoDocumento(): TipoDocumento
     {
         return $this->tipoDocumento;
     }
     
     /**
-     * @param App\Entity\TipoDocumento $tipoDocumento
+     * @param TipoDocumento $tipoDocumento
      */
-    public function setTipoDocumento(App\Entity\TipoDocumento $tipoDocumento): void
+    public function setTipoDocumento(TipoDocumento $tipoDocumento): void
     {
         $this->tipoDocumento = $tipoDocumento;
     }

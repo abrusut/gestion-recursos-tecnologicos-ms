@@ -6,7 +6,6 @@ namespace App\Repository;
 
 use ApiPlatform\Core\Bridge\Doctrine\Orm\Paginator;
 use App\Entity\Delegacion;
-use App\Entity\Secretaria;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Collections\Criteria;
 use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;

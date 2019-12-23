@@ -5,7 +5,10 @@ namespace App\Repository;
 
 
 use App\Entity\TipoDocumento;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Paginator;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\Common\Collections\Criteria;
+use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
 use Symfony\Bridge\Doctrine\RegistryInterface;
 
 class TipoDocumentoRepository  extends ServiceEntityRepository
