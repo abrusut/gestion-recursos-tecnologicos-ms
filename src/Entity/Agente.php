@@ -193,7 +193,7 @@ class Agente
     private $sexo;
     
     /**
-     * @var integer
+     * @var string
      * @Groups({"get", "post","put"})
      * @ORM\Column(name="telefono", type="string", length=25, nullable=true)
      * @Assert\Length( max = 25)
@@ -398,17 +398,17 @@ class Agente
     }
     
     /**
-     * @return int
+     * @return string
      */
-    public function getTelefono(): int
+    public function getTelefono(): string
     {
         return $this->telefono;
     }
     
     /**
-     * @param int $telefono
+     * @param string $telefono
      */
-    public function setTelefono(int $telefono): void
+    public function setTelefono(string $telefono): void
     {
         $this->telefono = $telefono;
     }
@@ -443,6 +443,38 @@ class Agente
     public function setCreatedAt(?\DateTime $createdAt): void
     {
         $this->createdAt = $createdAt;
+    }
+    
+    /**
+     * @return \DateTime|null
+     */
+    public function getUpdatedAt(): ?\DateTime
+    {
+        return $this->updatedAt;
+    }
+    
+    /**
+     * @param \DateTime|null $updatedAt
+     */
+    public function setUpdatedAt(?\DateTime $updatedAt): void
+    {
+        $this->updatedAt = $updatedAt;
+    }
+    
+    /**
+     * @return \DateTime|null
+     */
+    public function getFechaBaja(): ?\DateTime
+    {
+        return $this->fechaBaja;
+    }
+    
+    /**
+     * @param \DateTime|null $fechaBaja
+     */
+    public function setFechaBaja(?\DateTime $fechaBaja): void
+    {
+        $this->fechaBaja = $fechaBaja;
     }
     
     
